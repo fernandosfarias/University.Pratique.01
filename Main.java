@@ -22,9 +22,9 @@ public class Main extends Application {
     }
 
     public void mostrarCadastro() {
-        CadastroView cadastroView = new CadastroView();
+        CadastroView cadastro = new CadastroView();
 
-        Scene scene = new Scene(cadastroView.getView(), 400, 350);
+        Scene scene = new Scene(cadastro.getView(), 400, 350);
         stage.setScene(scene);
         stage.setTitle("Cadastro");
     }
