@@ -1,56 +1,25 @@
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+package view;
+
+import service.UsuarioService;
+import model.Usuario;
 
 public class LoginView {
 
-    private VBox layout;
-    private TextField emailField;
-    private PasswordField senhaField;
-    private Button loginButton;
-    private Button cadastroButton;
+    public void fazerLogin(String login, String senha) {
 
-    public LoginView() {
-        layout = new VBox(10);
-        layout.setPadding(new Insets(20));
+        try {
+            UsuarioService service = new UsuarioService();
 
-        Label titulo = new Label("Login");
+            Usuario usuario = service.login(login, senha);
 
-        emailField = new TextField();
-        emailField.setPromptText("Email");
+            if (usuario != null) {
+                System.out.println("Login OK");
+            } else {
+                System.out.println("Login inválido");
+            }
 
-        senhaField = new PasswordField();
-        senhaField.setPromptText("Senha");
-
-        loginButton = new Button("Entrar");
-        cadastroButton = new Button("Cadastrar-se");
-
-        layout.getChildren().addAll(
-                titulo,
-                emailField,
-                senhaField,
-                loginButton,
-                cadastroButton
-        );
-
-        // 👉 Eventos (aqui você vai conectar com a lógica depois)
-        loginButton.setOnAction(e -> fazerLogin());
-        cadastroButton.setOnAction(e -> abrirCadastro());
-    }
-
-    public Parent getView() {
-        return layout;
-    }
-
-    private void fazerLogin() {
-        String email = emailField.getText();
-        String senha = senhaField.getText();
-
-        System.out.println("Login: " + email + " / " + senha);
-    }
-
-    private void abrirCadastro() {
-        System.out.println("Abrir tela de cadastro");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
