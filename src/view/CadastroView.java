@@ -1,50 +1,26 @@
 package view;
 
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import service.UsuarioService;
 
 public class CadastroView {
 
-    private VBox layout;
+    private final UsuarioService service = new UsuarioService();
 
-    public CadastroView() {
-        layout = new VBox(10);
-        layout.setPadding(new Insets(20));
+    public void cadastrar(String login, String senha, String confirmarSenha, String email) {
+        try {
+            if (login == null || login.isBlank() || senha == null || senha.isBlank()) {
+                throw new IllegalArgumentException("Login e senha são obrigatórios.");
+            }
 
-        Label titulo = new Label("Cadastro");
+            if (!senha.equals(confirmarSenha)) {
+                throw new IllegalArgumentException("Senha e confirmação devem ser iguais.");
+            }
 
-        TextField nomeField = new TextField();
-        nomeField.setPromptText("Nome");
-
-        TextField emailField = new TextField();
-        emailField.setPromptText("Email");
-
-        PasswordField senhaField = new PasswordField();
-        senhaField.setPromptText("Senha");
-
-        PasswordField confirmarSenhaField = new PasswordField();
-        confirmarSenhaField.setPromptText("Confirmar Senha");
-
-        Button cadastrarButton = new Button("Cadastrar");
-
-        layout.getChildren().addAll(
-                titulo,
-                nomeField,
-                emailField,
-                senhaField,
-                confirmarSenhaField,
-                cadastrarButton
-        );
-
-        cadastrarButton.setOnAction(e -> {
-            System.out.println("Usuário cadastrado!");
-        });
+            service.cadastrar(login, senha, email);
+            System.out.println("Usuário cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.err.println("Erro ao cadastrar usuário: " + e.getMessage());
+        }
     }
-
-    public Parent getView() {
-        return layout;
-    }
-}    
+}
 
