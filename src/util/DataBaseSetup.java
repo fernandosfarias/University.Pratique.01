@@ -3,7 +3,7 @@ package util;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class DatabaseSetup {
+public class DataBaseSetup {
 
     public static void recriarBanco() {
 

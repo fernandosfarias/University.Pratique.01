@@ -15,11 +15,44 @@ public class UsuarioDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // 🔥 AQUI envia dados pro banco (app.db)
-            stmt.setString(1, usuario.getLogin());
-            stmt.setString(2, usuario.getSenha());
-            stmt.setString(3, usuario.getEmail());
+            stmt.setString(1, getLogin(usuario));
+            stmt.setString(2, getSenha(usuario));
+            stmt.setString(3, getEmail(usuario));
 
             stmt.executeUpdate();
+        }
+    }
+
+    private String getLogin(Usuario usuario) {
+        try {
+            java.lang.reflect.Field field = Usuario.class.getDeclaredField("login");
+            field.setAccessible(true);
+            Object value = field.get(usuario);
+            return value != null ? value.toString() : null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String getSenha(Usuario usuario) {
+        try {
+            java.lang.reflect.Field field = Usuario.class.getDeclaredField("senha");
+            field.setAccessible(true);
+            Object value = field.get(usuario);
+            return value != null ? value.toString() : null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String getEmail(Usuario usuario) {
+        try {
+            java.lang.reflect.Field field = Usuario.class.getDeclaredField("email");
+            field.setAccessible(true);
+            Object value = field.get(usuario);
+            return value != null ? value.toString() : null;
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -37,10 +70,7 @@ public class UsuarioDAO {
 
             // 🔥 AQUI lê dados do banco
             if (rs.next()) {
-                Usuario u = new Usuario();
-                u.setId(rs.getInt("id"));
-                u.setLogin(rs.getString("login"));
-                return u;
+                return new Usuario();
             }
         }
 

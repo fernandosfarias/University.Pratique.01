@@ -9,14 +9,13 @@ public class UsuarioService {
 
     public void cadastrar(String login, String senha, String email) throws Exception {
 
-        if (login.isEmpty() || senha.isEmpty()) {
+        if (login.isEmpty() || senha.isEmpty() || email.isEmpty()) {
             throw new Exception("Campos obrigatórios");
         }
 
         Usuario u = new Usuario();
-        u.setLogin(login);
-        u.setSenha(senha);
         u.setEmail(email);
+        u.setSenha(senha);
 
         dao.cadastrar(u);
     }

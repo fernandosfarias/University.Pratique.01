@@ -1,48 +1,59 @@
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+package View;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class CadastroView {
 
-    private VBox layout;
+    private JPanel layout;
 
     public CadastroView() {
-        layout = new VBox(10);
-        layout.setPadding(new Insets(20));
+        layout = new JPanel();
+        layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
+        layout.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        Label titulo = new Label("Cadastro");
+        JLabel titulo = new JLabel("Cadastro");
+        titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        TextField nomeField = new TextField();
-        nomeField.setPromptText("Nome");
+        JTextField nomeField = new JTextField();
+        nomeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, nomeField.getPreferredSize().height));
+        nomeField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        nomeField.setToolTipText("Nome");
 
-        TextField emailField = new TextField();
-        emailField.setPromptText("Email");
+        JTextField emailField = new JTextField();
+        emailField.setMaximumSize(new Dimension(Integer.MAX_VALUE, emailField.getPreferredSize().height));
+        emailField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        emailField.setToolTipText("Email");
 
-        PasswordField senhaField = new PasswordField();
-        senhaField.setPromptText("Senha");
+        JPasswordField senhaField = new JPasswordField();
+        senhaField.setMaximumSize(new Dimension(Integer.MAX_VALUE, senhaField.getPreferredSize().height));
+        senhaField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        senhaField.setToolTipText("Senha");
 
-        PasswordField confirmarSenhaField = new PasswordField();
-        confirmarSenhaField.setPromptText("Confirmar Senha");
+        JPasswordField confirmarSenhaField = new JPasswordField();
+        confirmarSenhaField.setMaximumSize(new Dimension(Integer.MAX_VALUE, confirmarSenhaField.getPreferredSize().height));
+        confirmarSenhaField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        confirmarSenhaField.setToolTipText("Confirmar Senha");
 
-        Button cadastrarButton = new Button("Cadastrar");
+        JButton cadastrarButton = new JButton("Cadastrar");
+        cadastrarButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        layout.getChildren().addAll(
-                titulo,
-                nomeField,
-                emailField,
-                senhaField,
-                confirmarSenhaField,
-                cadastrarButton
-        );
+        cadastrarButton.addActionListener(e -> System.out.println("Usuário cadastrado!"));
 
-        cadastrarButton.setOnAction(e -> {
-            System.out.println("Usuário cadastrado!");
-        });
+        layout.add(titulo);
+        layout.add(Box.createRigidArea(new Dimension(0, 10)));
+        layout.add(nomeField);
+        layout.add(Box.createRigidArea(new Dimension(0, 10)));
+        layout.add(emailField);
+        layout.add(Box.createRigidArea(new Dimension(0, 10)));
+        layout.add(senhaField);
+        layout.add(Box.createRigidArea(new Dimension(0, 10)));
+        layout.add(confirmarSenhaField);
+        layout.add(Box.createRigidArea(new Dimension(0, 10)));
+        layout.add(cadastrarButton);
     }
 
-    public Parent getView() {
+    public JPanel getView() {
         return layout;
     }
-}    
-
+}
