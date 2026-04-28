@@ -6,6 +6,8 @@ public class Usuario {
     private String senha;
     private String email;
 
+    public Usuario() {}
+
     public int getId() {
         return id;
     }

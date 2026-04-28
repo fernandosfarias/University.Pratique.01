@@ -1,6 +1,7 @@
 package service;
 
 import dao.EventosDAO;
+import model.Evento;
 
 public class EventosService {
 
@@ -12,7 +13,7 @@ public class EventosService {
             throw new Exception("Nome obrigatório");
         }
 
-        model.Evento evento = new model.Evento(nome, descricao, data, local, usuarioId);
+        Evento evento = new Evento(nome, descricao, data, local, usuarioId);
         dao.criarEvento(evento);
     }
 }
