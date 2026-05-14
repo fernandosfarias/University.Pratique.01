@@ -1,5 +1,7 @@
 package service;
 
+import java.util.ArrayList;
+
 import dao.eventosdao;
 import model.evento;
 
@@ -7,13 +9,19 @@ public class eventosservice {
 
     private eventosdao dao = new eventosdao();
 
-    public void criarEvento(String nome, String descricao, String data, String local, int usuarioId) throws Exception {
+    public void cadastrarEvento(
+        String nome,
+        String cidade,
+        String data
+    ) {
 
-        if (nome == null || nome.isEmpty()) {
-            throw new Exception("Nome obrigatório");
-        }
+        evento evento = new evento(nome, cidade, data);
 
-        evento evento = new evento(nome, descricao, data, local, usuarioId);
-        dao.criarevento(evento);
+        dao.salvar(evento);
+    }
+
+    public ArrayList<evento> listarEventos() {
+
+        return dao.listar();
     }
 }

@@ -2,49 +2,44 @@ package model;
 
 public class usuario {
 
-    private int id;
     private String login;
     private String senha;
+    private String nomeCompleto;
     private String email;
+    private String cpf;
 
-    public usuario() {}
-
-    // NOVO CONSTRUTOR
-    public usuario(String login, String senha) {
+    public usuario(
+        String login,
+        String senha,
+        String nomeCompleto,
+        String email,
+        String cpf
+    ) {
 
         this.login = login;
         this.senha = senha;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.cpf = cpf;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getCpf() {
+        return cpf;
     }
 }

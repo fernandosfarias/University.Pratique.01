@@ -1,11 +1,11 @@
 package app;
 
-import view.loginview;
+import view.LoginView;
 
 public class main {
 
     public static void main(String[] args) {
 
-        new loginview();
+        new LoginView();
     }
 }

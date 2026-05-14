@@ -8,11 +8,36 @@ public class usuarioservice {
     private usuariodao dao = new usuariodao();
 
     // CADASTRO
-    public void cadastrar(String login, String senha) {
+    public boolean cadastrar(
+        String login,
+        String senha,
+        String confirmarSenha,
+        String nomeCompleto,
+        String email,
+        String cpf
+    ) {
 
-        usuario usuario = new usuario(login, senha);
+        if (!senha.equals(confirmarSenha)) {
+
+            return false;
+        }
+
+        if (dao.existeLogin(login)) {
+
+            return false;
+        }
+
+        usuario usuario = new usuario(
+            login,
+            senha,
+            nomeCompleto,
+            email,
+            cpf
+        );
 
         dao.salvar(usuario);
+
+        return true;
     }
 
     // LOGIN
