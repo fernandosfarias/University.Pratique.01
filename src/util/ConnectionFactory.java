@@ -3,7 +3,7 @@ package util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionFactory {
+public class connectionfactory {
 
     private static final String URL = "jdbc:sqlite:app.db";
 

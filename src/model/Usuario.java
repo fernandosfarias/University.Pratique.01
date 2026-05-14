@@ -1,12 +1,20 @@
 package model;
 
-public class Usuario {
+public class usuario {
+
     private int id;
     private String login;
     private String senha;
     private String email;
 
-    public Usuario() {}
+    public usuario() {}
+
+    // NOVO CONSTRUTOR
+    public usuario(String login, String senha) {
+
+        this.login = login;
+        this.senha = senha;
+    }
 
     public int getId() {
         return id;

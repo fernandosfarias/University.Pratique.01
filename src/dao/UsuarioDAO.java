@@ -1,76 +1,29 @@
 package dao;
 
-import model.Usuario;
-import util.ConnectionFactory;
+import java.util.ArrayList;
+import model.usuario;
 
-import java.sql.*;
+public class usuariodao {
 
-public class UsuarioDAO {
+    private static ArrayList<usuario> usuarios = new ArrayList<>();
 
-    public void cadastrar(Usuario usuario) throws Exception {
+    // SALVAR
+    public void salvar(usuario usuario) {
 
-        String sql = "INSERT INTO usuario (login, senha, email) VALUES (?, ?, ?)";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            // 🔥 AQUI envia dados pro banco (app.db)
-            stmt.setString(1, getLogin(usuario));
-            stmt.setString(2, getSenha(usuario));
-            stmt.setString(3, getEmail(usuario));
-
-            stmt.executeUpdate();
-        }
+        usuarios.add(usuario);
     }
 
-    private String getLogin(Usuario usuario) {
-        try {
-            java.lang.reflect.Field field = Usuario.class.getDeclaredField("login");
-            field.setAccessible(true);
-            Object value = field.get(usuario);
-            return value != null ? value.toString() : null;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+    // BUSCAR USUARIO
+    public usuario buscar(String login, String senha) {
 
-    private String getSenha(Usuario usuario) {
-        try {
-            java.lang.reflect.Field field = Usuario.class.getDeclaredField("senha");
-            field.setAccessible(true);
-            Object value = field.get(usuario);
-            return value != null ? value.toString() : null;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+        for (usuario usuario : usuarios) {
 
-    private String getEmail(Usuario usuario) {
-        try {
-            java.lang.reflect.Field field = Usuario.class.getDeclaredField("email");
-            field.setAccessible(true);
-            Object value = field.get(usuario);
-            return value != null ? value.toString() : null;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+            if (
+                usuario.getLogin().equals(login) &&
+                usuario.getSenha().equals(senha)
+            ) {
 
-    public Usuario login(String login, String senha) throws Exception {
-
-        String sql = "SELECT * FROM usuario WHERE login = ? AND senha = ?";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, login);
-            stmt.setString(2, senha);
-
-            ResultSet rs = stmt.executeQuery();
-
-            // 🔥 AQUI lê dados do banco
-            if (rs.next()) {
-                return new Usuario();
+                return usuario;
             }
         }
 

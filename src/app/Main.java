@@ -1,13 +1,11 @@
 package app;
 
-// import app.view.LoginView;
+import view.loginview;
 
-public class Main {
+public class main {
+
     public static void main(String[] args) {
 
-        // LoginView tela = new LoginView();
-
-        // teste simples
-        // tela.fazerLogin("admin", "123");
+        new loginview();
     }
 }

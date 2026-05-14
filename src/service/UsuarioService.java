@@ -1,26 +1,23 @@
 package service;
 
-import dao.UsuarioDAO;
-import model.Usuario;
+import dao.usuariodao;
+import model.usuario;
 
-public class UsuarioService {
+public class usuarioservice {
 
-    private UsuarioDAO dao = new UsuarioDAO();
+    private usuariodao dao = new usuariodao();
 
-    public void cadastrar(String login, String senha, String email) throws Exception {
+    // CADASTRO
+    public void cadastrar(String login, String senha) {
 
-        if (login.isEmpty() || senha.isEmpty() || email.isEmpty()) {
-            throw new Exception("Campos obrigatórios");
-        }
+        usuario usuario = new usuario(login, senha);
 
-        Usuario u = new Usuario();
-        u.setEmail(email);
-        u.setSenha(senha);
-
-        dao.cadastrar(u);
+        dao.salvar(usuario);
     }
 
-    public Usuario login(String login, String senha) throws Exception {
-        return dao.login(login, senha);
+    // LOGIN
+    public usuario login(String login, String senha) {
+
+        return dao.buscar(login, senha);
     }
 }

@@ -1,20 +1,20 @@
 package dao;
 
-import model.Evento;
-import util.ConnectionFactory;
+import model.evento;
+import util.connectionfactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventosDAO {
+public class eventosdao {
 
     // 🔥 CREATE - salva evento no banco
-    public void criarEvento(Evento evento) throws Exception {
+    public void criarEvento(evento evento) throws Exception {
 
         String sql = "INSERT INTO evento (nome, descricao, data, local, criador_id) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionfactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // 🔥 Aqui envia dados para o app.db
@@ -29,20 +29,20 @@ public class EventosDAO {
     }
 
     // 🔍 READ - listar todos eventos
-    public List<Evento> listarEventos() throws Exception {
+    public List<evento> listarEventos() throws Exception {
 
-        List<Evento> lista = new ArrayList<>();
+        List<evento> lista = new ArrayList<>();
 
         String sql = "SELECT * FROM evento";
 
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionfactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             // 🔥 Aqui lê dados do banco (app.db)
             while (rs.next()) {
 
-                Evento e = new Evento();
+                evento e = new evento();
 
                 e.setId(rs.getInt("id"));
                 e.setNome(rs.getString("nome"));
@@ -59,11 +59,11 @@ public class EventosDAO {
     }
 
     // 🔍 READ - buscar evento por ID
-    public Evento buscarPorId(int id) throws Exception {
+    public evento buscarPorId(int id) throws Exception {
 
         String sql = "SELECT * FROM evento WHERE id = ?";
 
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionfactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
@@ -72,7 +72,7 @@ public class EventosDAO {
 
             if (rs.next()) {
 
-                Evento e = new Evento();
+                evento e = new evento();
 
                 e.setId(rs.getInt("id"));
                 e.setNome(rs.getString("nome"));
@@ -89,13 +89,13 @@ public class EventosDAO {
     }
 
     // 👤 listar eventos criados por um usuário
-    public List<Evento> listarPorUsuario(int usuarioId) throws Exception {
+    public List<evento> listarPorUsuario(int usuarioId) throws Exception {
 
-        List<Evento> lista = new ArrayList<>();
+        List<evento> lista = new ArrayList<>();
 
         String sql = "SELECT * FROM evento WHERE criador_id = ?";
 
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionfactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, usuarioId);
@@ -104,7 +104,7 @@ public class EventosDAO {
 
             while (rs.next()) {
 
-                Evento e = new Evento();
+                evento e = new evento();
 
                 e.setId(rs.getInt("id"));
                 e.setNome(rs.getString("nome"));

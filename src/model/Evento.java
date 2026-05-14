@@ -1,6 +1,6 @@
 package model;
 
-public class Evento {
+public class evento {
 
     private int id;
     private String nome;
@@ -10,10 +10,10 @@ public class Evento {
     private int criadorId;
 
     // 🔹 Construtor vazio
-    public Evento() {}
+    public evento() {}
 
     // 🔹 Construtor completo (opcional, mas útil)
-    public Evento(String nome, String descricao, String data, String local, int criadorId) {
+    public evento(String nome, String descricao, String data, String local, int criadorId) {
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;

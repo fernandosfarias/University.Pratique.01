@@ -1,17 +1,17 @@
 package dao;
 
-import util.ConnectionFactory;
+import util.connectionfactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class PresencaDAO {
+public class presencadao {
 
     public void confirmarPresenca(int usuarioId, int eventoId, String status) throws Exception {
 
         String sql = "INSERT INTO presenca (usuario_id, evento_id, status) VALUES (?, ?, ?)";
 
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionfactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // 🔥 registra presença no banco

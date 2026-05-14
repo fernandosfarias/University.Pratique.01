@@ -1,11 +1,11 @@
 package service;
 
-import dao.EventosDAO;
-import model.Evento;
+import dao.eventosdao;
+import model.evento;
 
-public class EventosService {
+public class eventosservice {
 
-    private EventosDAO dao = new EventosDAO();
+    private eventosdao dao = new eventosdao();
 
     public void criarEvento(String nome, String descricao, String data, String local, int usuarioId) throws Exception {
 
@@ -13,7 +13,7 @@ public class EventosService {
             throw new Exception("Nome obrigatório");
         }
 
-        Evento evento = new Evento(nome, descricao, data, local, usuarioId);
-        dao.criarEvento(evento);
+        evento evento = new evento(nome, descricao, data, local, usuarioId);
+        dao.criarevento(evento);
     }
 }

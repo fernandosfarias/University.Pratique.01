@@ -1,15 +1,15 @@
 package model;
 
-public class Presenca {
+public class presenca {
 
     private int id;
     private int usuarioId;
     private int eventoId;
     private String status; // CONFIRMADO / RECUSADO
 
-    public Presenca() {}
+    public presenca() {}
 
-    public Presenca(int usuarioId, int eventoId, String status) {
+    public presenca(int usuarioId, int eventoId, String status) {
         this.usuarioId = usuarioId;
         this.eventoId = eventoId;
         this.status = status;
