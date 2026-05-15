@@ -5,10 +5,12 @@ import model.usuario;
 
 public class usuarioservice {
 
-    private usuariodao dao = new usuariodao();
+    private usuariodao dao =
+        new usuariodao();
 
     // CADASTRO
     public boolean cadastrar(
+
         String login,
         String senha,
         String confirmarSenha,
@@ -27,7 +29,18 @@ public class usuarioservice {
             return false;
         }
 
+        if (dao.existeEmail(email)) {
+
+            return false;
+        }
+
+        if (dao.existeCpf(cpf)) {
+
+            return false;
+        }
+
         usuario usuario = new usuario(
+
             login,
             senha,
             nomeCompleto,
@@ -41,7 +54,10 @@ public class usuarioservice {
     }
 
     // LOGIN
-    public usuario login(String login, String senha) {
+    public usuario login(
+        String login,
+        String senha
+    ) {
 
         return dao.buscar(login, senha);
     }

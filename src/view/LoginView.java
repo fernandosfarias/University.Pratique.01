@@ -10,7 +10,7 @@ public class LoginView extends JFrame {
     public LoginView() {
 
         setTitle("Login");
-        setSize(450, 500);
+        setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -19,73 +19,34 @@ public class LoginView extends JFrame {
 
         // LOGIN
         JLabel lblLogin = new JLabel("Usuário:");
-        lblLogin.setBounds(50, 30, 100, 25);
+        lblLogin.setBounds(50, 40, 100, 25);
         painel.add(lblLogin);
 
         JTextField txtLogin = new JTextField();
-        txtLogin.setBounds(180, 30, 180, 25);
+        txtLogin.setBounds(150, 40, 180, 25);
         painel.add(txtLogin);
 
         // SENHA
         JLabel lblSenha = new JLabel("Senha:");
-        lblSenha.setBounds(50, 70, 100, 25);
+        lblSenha.setBounds(50, 90, 100, 25);
         painel.add(lblSenha);
 
         JPasswordField txtSenha = new JPasswordField();
-        txtSenha.setBounds(180, 70, 180, 25);
+        txtSenha.setBounds(150, 90, 180, 25);
         painel.add(txtSenha);
 
-        // CONFIRMAR SENHA
-        JLabel lblConfirmarSenha =
-            new JLabel("Confirmar senha:");
-
-        lblConfirmarSenha.setBounds(50, 110, 120, 25);
-
-        painel.add(lblConfirmarSenha);
-
-        JPasswordField txtConfirmarSenha =
-            new JPasswordField();
-
-        txtConfirmarSenha.setBounds(180, 110, 180, 25);
-
-        painel.add(txtConfirmarSenha);
-
-        // NOME COMPLETO
-        JLabel lblNome = new JLabel("Nome completo:");
-        lblNome.setBounds(50, 150, 120, 25);
-        painel.add(lblNome);
-
-        JTextField txtNome = new JTextField();
-        txtNome.setBounds(180, 150, 180, 25);
-        painel.add(txtNome);
-
-        // EMAIL
-        JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBounds(50, 190, 100, 25);
-        painel.add(lblEmail);
-
-        JTextField txtEmail = new JTextField();
-        txtEmail.setBounds(180, 190, 180, 25);
-        painel.add(txtEmail);
-
-        // CPF
-        JLabel lblCpf = new JLabel("CPF:");
-        lblCpf.setBounds(50, 230, 100, 25);
-        painel.add(lblCpf);
-
-        JTextField txtCpf = new JTextField();
-        txtCpf.setBounds(180, 230, 180, 25);
-        painel.add(txtCpf);
-
-        // BOTÕES
+        // BOTÃO ENTRAR
         JButton btnEntrar = new JButton("Entrar");
-        btnEntrar.setBounds(50, 320, 120, 35);
+        btnEntrar.setBounds(50, 150, 120, 35);
 
-        JButton btnCadastrar = new JButton("Cadastrar");
-        btnCadastrar.setBounds(220, 320, 140, 35);
+        // BOTÃO CADASTRO
+        JButton btnCriarConta =
+            new JButton("Criar Conta");
+
+        btnCriarConta.setBounds(200, 150, 130, 35);
 
         painel.add(btnEntrar);
-        painel.add(btnCadastrar);
+        painel.add(btnCriarConta);
 
         usuarioservice service = new usuarioservice();
 
@@ -120,51 +81,10 @@ public class LoginView extends JFrame {
             }
         });
 
-        // CADASTRO
-        btnCadastrar.addActionListener(e -> {
+        // ABRIR CADASTRO
+        btnCriarConta.addActionListener(e -> {
 
-            String login = txtLogin.getText();
-
-            String senha =
-                new String(txtSenha.getPassword());
-
-            String confirmarSenha =
-                new String(
-                    txtConfirmarSenha.getPassword()
-                );
-
-            String nomeCompleto =
-                txtNome.getText();
-
-            String email =
-                txtEmail.getText();
-
-            String cpf =
-                txtCpf.getText();
-
-            boolean sucesso = service.cadastrar(
-                login,
-                senha,
-                confirmarSenha,
-                nomeCompleto,
-                email,
-                cpf
-            );
-
-            if (sucesso) {
-
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Usuário cadastrado!"
-                );
-
-            } else {
-
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Erro no cadastro!"
-                );
-            }
+            new CadastroView();
         });
 
         add(painel);

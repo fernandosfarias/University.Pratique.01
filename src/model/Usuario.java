@@ -21,6 +21,7 @@ public class usuario {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.cpf = cpf;
+      
     }
 
     public String getLogin() {
